@@ -1,0 +1,15 @@
+nav {
+    width: 100vw;
+}
+
+.navbar-toggler {
+    margin-right: 1rem;
+}
+
+.nav-link {
+    color: #007bff !important;
+}
+
+.nav-link:hover {
+    color: var(--lightWhite) !important;
+}

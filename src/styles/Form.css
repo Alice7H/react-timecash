@@ -1,0 +1,42 @@
+.form-control {
+   display: flex;
+   flex-direction: column;
+   margin-bottom: 5px;
+}
+
+.error {
+   font-size: small;
+}
+
+label {
+   display: contents;
+   color: var(--mainPurple);
+}
+
+input {
+   border-color: var(--mainPurple);
+   max-width: 50%;
+   text-align: center;
+   align-self: center;
+}
+
+input:focus {
+   outline: none !important;
+   border-color: var(--lightPurple);
+}
+
+button { 
+   color: var(--mainPurple); 
+   padding: 10px;
+   border: 1px solid var(--mainPurple);
+   border-radius: 5px;
+}
+
+button:disabled  {
+   color: var(--mainGray); 
+   border: 1px solid var(--mainGray);
+}
+
+button:hover:enabled{
+   background: var(--lightPurple2);
+}

@@ -1,0 +1,41 @@
+.form {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    margin-left: 50%;
+}
+
+.form-control {
+    margin-top: 30px;
+    border: none;
+    text-align: center;
+}
+
+.error {
+    color: red;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+button {
+    margin-top: 30px;
+    margin-right: 10px;
+}
+
+label {
+    margin-right: 5px;
+}
+
+.button-link {
+    color:  #007bff !important;
+    border: none;
+    background: transparent;
+}
+
+.button-link:hover {
+    color: var(--darkPurple) !important;
+}
+
+.login-form {
+    height: 56vh;
+}

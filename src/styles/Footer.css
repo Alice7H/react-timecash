@@ -1,0 +1,26 @@
+footer {
+    width: 100vw;
+    padding-bottom: 10px;
+    font-size: 1.1rem;
+    padding-top: 1rem;
+    color: var(--lightWhite);
+}
+
+.media-icons a {
+    margin-right: 1rem;
+}
+
+.media-icons i{
+   font-size: 1.8rem;
+   color: var(--mainWhite);
+}
+
+.media-icons i:hover{
+    color: var(--lightPurple);
+    text-decoration: none;
+ }
+
+ footer a:hover{
+    text-decoration: none;
+    color: var(--lightWhite);
+ }
