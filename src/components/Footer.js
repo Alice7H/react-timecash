@@ -1,9 +1,6 @@
-import { useLocation } from 'react-router-dom';
 import '../styles/Footer.css';
 
 export default function Footer() {
-
-    const location = useLocation();
 
     return (
         <footer className="bg-dark">
@@ -16,9 +13,12 @@ export default function Footer() {
             <a href='/'><i className="fa fa-youtube-square"/></a>
             </div>
             <br/>
-            {  location.pathname === '/' ? (<p className="float-right pr-5">
-                <a href="/">Back to top</a>
-            </p>) : null }
+            <span className="pl-5">Developed by <a href="https://github.com/Alice7H"> Alice Hata</a></span>
+            <br/>
+            <span className="pl-5">Photo by 
+                <a href="https://unsplash.com/@joannakosinska?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"> Joanna Kosinska </a> on <a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"> Unsplash</a>
+            </span>
+            <br/>
             <p className="pl-5">
                 © 2020-2021 H&M -IT Company, Inc. · 
                 <a href="/"> Privacy </a>  · 

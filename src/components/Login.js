@@ -1,79 +1,77 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as yup from 'yup';
-import '../styles/Register.css';
-import TextError from '../components/TextError';
-import { Card } from 'react-bootstrap';
-import { useAuth } from '../context';
-import { Redirect } from 'react-router-dom';
+import React, { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Form, Button, Card } from 'react-bootstrap';
+import { useAuth } from "../contexts/AuthContext";
+import { Link, Redirect } from "react-router-dom"; 
+import { Formik } from "formik";
+import { validationLogin } from "../validations-schema/validations";
+import CardBox from './CardBox';
+import CatchError from './CatchError';
+import InputGeneric from './InputGeneric';
 
 export default function Login(props) {
 
-    const { signup, user, loading } = useAuth();
+    const {login, currentUser } = useAuth()
+    const [error, setError] = useState("")
+    // const [loading, setLoading] = useState(false)
 
     const initialValues = {
-        email: '',
-        password: '',
-    };
-
-    const validationSchema = yup.object({
-        email: yup.string().email('Invalid email format').required('Email is required'),
-        password: yup.string().min(6, 'Minimum 6 characters').max(50, 'Maximum 50 charaters').required('Password is required'),
-    });
-
-    const onSubmit = async(values) => {
-        localStorage.setItem("userEmail", values.email);
-        localStorage.setItem("userPassword", values.password);
-        await signup();
-        props.history.push('/user');
+        email: "",
+        password: ""
     }
 
-    // const handleForgotPass = () => {
-    //     props.history.push('/forgot-password');
-    // }
+    async function onSubmit(data) {
+        try {
+            setError("");
+            // setLoading(true);
+            await login(data.email, data.password);
+            props.history.push("/");
+        }catch(error) {
+            setError("Failed to log in");
+            console.log(error.message);
+        }
+        // setLoading(false);
+    }
 
-    // const handleSignup = () => {
-    //     props.history.push('/signup');
-    // }
+    if(currentUser) { return <Redirect to="/"/>  } 
 
     return (
-        user && !loading ? <Redirect to="/user"/> :
-        <Formik  
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={onSubmit}
-        >
-            {formik => {
-                return (
-                    <Card >     
-                        <Card.Body className="text-center my-5 p-5">
-                            <h1>Login</h1>
-                            <Form onSubmit={formik.handleSubmit}>
-                                <div className='form-control'>
-                                    <label htmlFor='email'>E-mail</label>
-                                    <Field type='text' id='email' name='email' />
-                                    <ErrorMessage name='email'>
-                                        {(errorMsg) => (
-                                            <div className='error'>{errorMsg}</div>
-                                        )}
-                                    </ErrorMessage>
-                                </div>
-                                <div className="form-control">
-                                    <label htmlFor="password">Password</label>
-                                    <Field type='password' id='password' name='password' />
-                                    <ErrorMessage name='password' component={TextError} />  
-                                </div>               
-                                <div>
-                                    <button type="submit" disabled={!(formik.isValid && formik.dirty) || formik.isSubmitting}>Submit</button>
-                                </div>
-                                {/* <div>
-                                    <button className="button-link" onClick={handleForgotPass}>Forgot Password</button>
-                                    <button className="button-link" onClick={handleSignup}>Sign Up</button>
-                                </div> */}
-                            </Form>
-                        </Card.Body>
-                    </Card>
-                )
-            }}
-        </Formik>
+        <CardBox minHeight="100vh" maxWidth="400px">
+            <Card>
+                <Card.Body>
+                    <CatchError error={error} />
+
+                    <Formik
+                        initialValues={initialValues}
+                        validationSchema={validationLogin}
+                        onSubmit={onSubmit}
+                    >
+                    {({isSubmitting, isValid, dirty, handleSubmit}) => {
+                        return (
+                            <div className='mx-4 my-4 text-center'>
+                                <h1 className="text-center mb-4">Log In</h1>
+                                
+                                <Form onSubmit={handleSubmit}>
+                                    <Form.Row>
+                                        <InputGeneric type="email" value="email" label="Email" md="12" />
+                                        <InputGeneric type="password" value="password" label="Password" md="12" />
+                                    </Form.Row>               
+                                    <Button disabled={!(isValid && dirty) || isSubmitting } className="w-100" variant='outline-primary' type='submit'>
+                                        Log In
+                                    </Button> 
+                                </Form>
+                            </div>
+                        )
+                    }}
+                    </Formik>
+                    <div className="w-100 text-center mt-3">
+                        <Link to="/forgot-password">Forgot Password</Link>
+                    </div>
+                </Card.Body>
+            </Card>
+            <div className="w-100 text-center mt-2">
+                Need an account? <Link to="/signup">Sign Up</Link>
+            </div>
+        </CardBox>
     )
 }

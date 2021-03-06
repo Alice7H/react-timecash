@@ -1,0 +1,38 @@
+:root {
+    --mainDarkPurple: #130040;
+    --darkPurple: #38006b;
+    --mainPurple: #6a1b9a;
+    --lightPurple: #9c4dcc;
+    --lightPurple2: #d07dff;
+    --mainDarkBlue: #002999;
+    --darkBlue: #0050cb;
+    --mainBlue: #007bff;
+    --lightBlue: #69a9ff;
+    --mainDark: #23252B;
+    --mainGray:	#808080;
+    --mainYellow: #ffeb3a;
+    --mainWheat: #F5DEB3;
+    --mainWhite: #f3f3f3;
+    --lightWhite: #e5e5e5;
+    overflow-x: hidden;
+  }
+
+  .bg-default {
+    background: var(--lightPurple2);
+  }
+
+  #root {
+    background-image: url(../images/tools2.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: var(--lightWhite);
+  }
+
+  table { 
+    background: var(--lightWhite);
+  }
+
+  .card {
+    color: var(--mainDark);
+  }

@@ -12,11 +12,11 @@ footer {
 
 .media-icons i{
    font-size: 1.8rem;
-   color: var(--mainWhite);
+   color: var(--mainBlue);
 }
 
 .media-icons i:hover{
-    color: var(--lightPurple);
+    color: var(--lightWhite);
     text-decoration: none;
  }
 

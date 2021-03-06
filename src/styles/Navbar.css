@@ -6,8 +6,16 @@ nav {
     margin-right: 1rem;
 }
 
+.navbar-dark .navbar-brand {
+    color: var(--mainBlue);
+}
+
+.navbar-dark .navbar-brand:focus, .navbar-dark .navbar-brand:hover {
+    color: var(--mainWhite);
+}
+
 .nav-link {
-    color: #007bff !important;
+    color: var(--mainBlue) !important;
 }
 
 .nav-link:hover {
