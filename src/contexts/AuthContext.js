@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
-import { auth } from "../firebase";
-import CardLoading from "../components/CardLoading";
+import { auth } from "../services/firebase";
+import CardLoading from "../components/presentational/CardLoading";
 
 const AuthContext = React.createContext();
 
@@ -8,20 +8,21 @@ export function useAuth() {
     return useContext(AuthContext);
 }
 
-export default function AuthProvider({children}) {
+export default function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(true)
+
     // const [credential, setCredential] = useState("")
 
-    function signup(name, email, password) {
-        auth.createUserWithEmailAndPassword(email, password)
-        .then(res => {
-            updateDisplayName(name);
-            // setCredential(res)
-            console.log("Update successful");
-        }).catch(error => {
-            console.log("Error", error.code + " " + error.message)
-        });
+    function signup(email, password) {
+        return auth.createUserWithEmailAndPassword(email, password)
+        // .then(res => {
+        //     // setCredential(res)
+        //     console.log("successful");
+        // }).catch(error => {
+        //     console.log("Error", error.code + " " + error.message)
+        //     return error; 
+        // });
     }
 
     function login(email, password) {
@@ -45,11 +46,11 @@ export default function AuthProvider({children}) {
     // }
 
     function updateDisplayName(name) {
-        return  currentUser.updateProfile({displayName: name });
+        return currentUser.updateProfile({ displayName: name });
     }
 
     function updateEmail(email) {
-        return currentUser.updateEmail(email);   
+        return currentUser.updateEmail(email);
     }
 
     function updatePassword(password) {
@@ -57,17 +58,16 @@ export default function AuthProvider({children}) {
     }
 
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged( user => {
+        const unsubscribe = auth.onAuthStateChanged(user => {
             setLoading(false);
             setCurrentUser(user);
         })
-      
+
         return () => { unsubscribe() };
-        
+
     }, [currentUser])
 
-     
-    const value = { 
+    const value = {
         currentUser,
         signup,
         login,
@@ -78,7 +78,7 @@ export default function AuthProvider({children}) {
         updateDisplayName,
     }
 
-    if(loading) {
+    if (loading) {
         return <CardLoading />
     }
 

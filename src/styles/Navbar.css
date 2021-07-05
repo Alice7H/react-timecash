@@ -10,14 +10,25 @@ nav {
     color: var(--mainBlue);
 }
 
+.navbar-light .navbar-brand {
+    color: var(--main);
+}
+
 .navbar-dark .navbar-brand:focus, .navbar-dark .navbar-brand:hover {
-    color: var(--mainWhite);
+    color: var(--light);
+    text-decoration: underline;
+}
+
+.navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
+    color: var(--light);
+    text-decoration: underline;
 }
 
 .nav-link {
-    color: var(--mainBlue) !important;
+    color: var(--main) !important;
 }
 
 .nav-link:hover {
-    color: var(--lightWhite) !important;
+    color: var(--light) !important;
+    text-decoration: underline;
 }

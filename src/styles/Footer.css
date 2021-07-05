@@ -3,24 +3,24 @@ footer {
     padding-bottom: 10px;
     font-size: 1.1rem;
     padding-top: 1rem;
-    color: var(--lightWhite);
+    color: var(--main);
 }
 
-.media-icons a {
-    margin-right: 1rem;
-}
-
-.media-icons i{
+.media-icons i {
    font-size: 1.8rem;
-   color: var(--mainBlue);
+   color: var(--main);
 }
 
 .media-icons i:hover{
-    color: var(--lightWhite);
-    text-decoration: none;
+    color: var(--light);
+    text-decoration: underline;
  }
 
- footer a:hover{
-    text-decoration: none;
-    color: var(--lightWhite);
+ footer a {
+    margin-right: 1rem;
+    color: var(--darkPurple);
+}
+ footer a:hover {
+    text-decoration: underline;
+    color: var(--light);
  }
