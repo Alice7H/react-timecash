@@ -10,11 +10,11 @@ export default function ServiceProd(props) {
             ?
             <Container>
                 <Row className="justify-content-md-center ">
-                    <Col md="auto">
+                    <Col md="auto" className="w-100">
                         <div className="text-center my-5">
                             {products.length > 0
                                 ? (<>
-                                    <h4 className="text-center">Products</h4>
+                                    <h2 className="text-center text-main">Products</h2>
                                     <Table striped bordered hover responsive>
                                         <Column colNames={columnNames} />
                                         {products.map(product => {

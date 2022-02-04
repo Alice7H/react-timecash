@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Container, Button, Form, Card } from "react-bootstrap";
 import { Formik } from "formik";
-import ServiceProdContainer from "../../service/ServiceProdContainer";
+// import ServiceProdContainer from "../../service/ServiceProdContainer";
 import InputDataPicker from '../InputDataPicker';
 import InputGeneric from '../InputGeneric';
 import CatchError from '../CatchError';
@@ -11,12 +11,21 @@ import { validationService } from "../../../validations-schema/validations";
 
 export default function ServiceEdit(props) {
 
-    const { error, initialValues, onSubmit, id, status } = props;
+    const { error, initialValues, onSubmit } = props;
     const validationSchema = validationService(initialValues.startTime);
+    const history = useHistory();
+
+    function handleShowProducts() {
+        history.push({
+            pathname: "/product-show",
+            id: props.id,
+            status: props.status
+        });
+    }
 
     return (
         <Container>
-            <ServiceProdContainer id={id} status={status} />
+            {/* <ServiceProdContainer id={id} status={status} /> */}
 
             <CardBox minHeight="40vh" maxWidth="100%">
                 <Card style={{ marginTop: "20px", marginBottom: "20px" }}>
@@ -28,7 +37,7 @@ export default function ServiceEdit(props) {
                             {({ isSubmitting, isValid, dirty, handleSubmit }) => {
                                 return (
                                     <div className='text-center my-2'>
-                                        <h1> Edit Service</h1>
+                                        <h1 className="text-main"> Service in progress</h1>
                                         <Form onSubmit={handleSubmit}>
                                             <Form.Row>
                                                 <InputDataPicker value="startTime" label="Start time" md="6" disabled={true} />
@@ -37,7 +46,7 @@ export default function ServiceEdit(props) {
 
                                             <Form.Row>
                                                 <InputGeneric value="name" type="text" label="Service name" md="6" />
-                                                <InputGeneric value="serviceHour" type="number" label="Service price per hour" md="6" />
+                                                <InputGeneric value="serviceHour" type="number" step="0.1" min="0.01" label="Service price per hour" md="6" />
                                             </Form.Row>
 
                                             <Form.Row>
@@ -45,13 +54,15 @@ export default function ServiceEdit(props) {
                                                 <InputGeneric value="otherCost" type="number" label="Other cost" md="6" />
                                             </Form.Row>
 
+                                            <Button className="mt-3 mr-3" variant="outline-secondary" onClick={handleShowProducts}>Show products</Button>
                                             {
                                                 !(isValid && dirty) || isSubmitting
                                                     ? <Button variant='outline-success' className="mt-3 mr-3" disabled>Complete Service</Button>
                                                     : <ConfirmModal onSubmit={handleSubmit} />
                                             }
+
                                             <Link to='/'>
-                                                <Button className="mt-3" variant='outline-primary'> Back to note list</Button>
+                                                <Button className="mt-3" variant='outline-primary'>Back to home</Button>
                                             </Link>
                                         </Form>
                                     </div>

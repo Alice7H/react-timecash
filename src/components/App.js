@@ -13,6 +13,7 @@ import ForgotPasswordContainer from "./user/ForgotPasswordContainer";
 import PrivateRoute from "./PrivateRoute";
 import NavbarContainer from "./NavbarContainer";
 import HomeContainer from "./HomeContainer";
+import ProductShowContainer from "./product/ProductShowContainer";
 import ProductCreateContainer from "./product/ProductCreateContainer";
 import ProductEditContainer from "./product/ProductEditContainer";
 import ServiceEditContainer from "./service/ServiceEditContainer";
@@ -33,6 +34,7 @@ function App() {
             <PrivateRoute exact path="/" component={HomeContainer} />
             <PrivateRoute path="/service-show" component={ServiceShowContainer} />
             <PrivateRoute path="/service-edit/:id" component={ServiceEditContainer} />
+            <PrivateRoute path="/product-show" component={ProductShowContainer} />
             <PrivateRoute path="/product-create/:id" component={ProductCreateContainer} />
             <PrivateRoute path="/product-edit/:id" component={ProductEditContainer} />
             <PrivateRoute exact path="/update-profile" component={UpdateProfileContainer} />

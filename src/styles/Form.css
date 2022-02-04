@@ -1,3 +1,7 @@
+.form-row {
+  text-align: left;
+}
+
 .form-label {
   color: var(--main);
   text-transform: uppercase;

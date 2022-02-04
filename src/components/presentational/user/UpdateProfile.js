@@ -34,7 +34,7 @@ export default function UpdateProfile(props) {
                                         <Button disabled={!(isValid && dirty) || isSubmitting} variant='outline-success'
                                             className="w-40 mr-5" type="submit"> Update</Button>
                                         <Link to="/">
-                                            <Button className="w-40" variant='outline-primary'>Cancel</Button>
+                                            <Button className="w-40" variant='outline-primary'>Back to home</Button>
                                         </Link>
                                     </Form>
                                 </div>

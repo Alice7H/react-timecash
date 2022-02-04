@@ -1,9 +1,9 @@
-import React, {useState} from 'react'
-import {Modal, Button} from 'react-bootstrap';
+import React, { useState } from 'react'
+import { Modal, Button } from 'react-bootstrap';
 import "../../styles/Modal.css";
 
-export default function ConfirmModal({onSubmit}) {
-    const [show, setShow] = useState(false);
+export default function ConfirmModal({ onSubmit }) {
+  const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -15,7 +15,7 @@ export default function ConfirmModal({onSubmit}) {
 
   return (
     <>
-      <Button variant='outline-success' className='mr-2' onClick={handleShow}>
+      <Button variant='outline-success' className='mt-3 mr-3' onClick={handleShow}>
         Complete service
       </Button>
 
@@ -24,7 +24,7 @@ export default function ConfirmModal({onSubmit}) {
           <Modal.Title>Alert</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            You can't edit or add new products in this form after clicked in complete service
+          You can't edit or add new products in this form after clicked in complete service
         </Modal.Body>
         <Modal.Footer>
           <Button variant="outline-success" onClick={handleSubmit}>

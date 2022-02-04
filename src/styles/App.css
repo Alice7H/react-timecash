@@ -28,10 +28,6 @@
     color: var(--lightWhite);
   }
 
-  table { 
-    background: var(--lightWhite);
-  }
-
   .card {
     color: var(--mainDark);
     opacity: 0.95;
@@ -46,14 +42,19 @@
     font-size: 1.1em;
   }
 
+  .text-main {
+    color: var(--main);
+  }
+
   button > a {
     text-decoration: none;
     background: inherit;
     text-align: center;
   }
 
-  a {
+  a .outline-primary {
     color: var(--main);
+    background: inherit;
   }
 
   .link-dif {

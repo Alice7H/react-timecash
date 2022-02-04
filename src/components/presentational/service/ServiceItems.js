@@ -11,12 +11,12 @@ export default function ServiceItems({ service }) {
                     {
                         service.status === "in progress" ?
                             <>
-                                <Link to={{ pathname: `/service-edit/${service.id}`, state: { service } }} className="mr-3" title="Edit service">
+                                <Link to={{ pathname: `/service-edit/${service.id}`, state: { service } }} title="Edit service">
                                     <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </Link>
-                                <Link to={`/product-create/${service.id}`} title='Add product'>
+                                {/* <Link to={`/product-create/${service.id}`} title='Add product'>
                                     <i className='fa fa-cubes' aria-hidden='true' />
-                                </Link>
+                                </Link> */}
                             </>
                             :
                             <Link to={{ pathname: `/service-show`, state: { service } }} title="See service done">

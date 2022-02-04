@@ -17,7 +17,7 @@ export default function Home(props) {
                 <CardBox minHeight="55vh" maxWidth="500px">
                     <Card>
                         <Card.Body>
-                            <h2 className="text-center mb-4">Profile</h2>
+                            <h2 className="text-main text-center mb-4">Profile</h2>
                             <p>Name: <strong>{currentUser.displayName}</strong></p>
                             <p>Email: <strong>{currentUser.email}</strong></p>
                             <div className="w-100 d-flex justify-content-center">
@@ -41,7 +41,7 @@ export default function Home(props) {
                         : services.length === 0
                             ? <div className="text-center mb-3">Service not found </div>
                             : <>
-                                <h4 className="text-center mb-3"> Services</h4>
+                                <h2 className="text-center mb-3"> Services</h2>
                                 <ServiceTable services={services} colNames={columnNames} />
                             </>
                 }

@@ -33,7 +33,7 @@ export function validationService (startTime) {
         serviceHour: yup
             .number()
             .positive("It must be positive number")
-            .min(0.1, "Minimum 0.1")
+            .min(0.01, "Minimum 0.01")
             .required("Service hour is required"),
         travelCost: yup.string().matches(regexNumbers, "It must be a number").required("Minimum is 0"),
         otherCost: yup.string().matches(regexNumbers, "It must be a number").required("Minimum is 0"),
@@ -52,7 +52,7 @@ export const validationProduct = yup.object({
     price: yup
         .number()
         .positive("It must be positive number")
-        .min(0.1, "Minimum 0.1")
+        .min(0.01, "Minimum 0.01")
         .required("Price is required"),
     quantity: yup
         .number()
