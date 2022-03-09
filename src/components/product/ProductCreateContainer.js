@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { createProducts } from "../../contexts/Firestore";
+import { createProducts } from "../../api/Firestore";
+import { calculateProduct } from "../../utils/calculate";
 import ProductForm from "../presentational/product/ProductForm";
 
 export default function ProductCreateContainer(props) {
@@ -15,8 +16,9 @@ export default function ProductCreateContainer(props) {
     };
 
     async function onSubmit(data) {
-        const docRef = await createProducts(id, data);
-        if (docRef !== null) {
+        const total = calculateProduct(data.quantity, data.price);
+        const docRef = await createProducts(id, data, total);
+        if (docRef) {
             props.history.push(`/service-edit/${id}`);
         } else {
             setError('Error to create new product');

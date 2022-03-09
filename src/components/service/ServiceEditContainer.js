@@ -1,8 +1,20 @@
 import { useEffect, useState, useCallback } from "react";
-import { useParams } from "react-router-dom";
-import { updateService, updateProdService, getById } from "../../contexts/Firestore";
+import { useParams, useHistory } from "react-router-dom";
 import CardLoading from "../presentational/CardLoading";
 import ServiceEdit from "../presentational/service/ServiceEdit";
+import { convertToDate } from "../../utils/converter";
+import { 
+    calculatePriceHour, 
+    calculateTotalService, 
+    calculateTotalProd,
+    calculateTotal
+} from "../../utils/calculate";
+import { 
+    updateService, 
+    createProdService, 
+    getById, 
+    getProductsByService 
+} from "../../api/Firestore";
 
 export default function ServiceEditContainer(props) {
     const [service, setService] = useState({});
@@ -10,6 +22,7 @@ export default function ServiceEditContainer(props) {
     const [error, setError] = useState("");
     const { id } = useParams();
     const status = "in progress";
+    const history = useHistory();
 
     const getServiceById = useCallback(
         async () => {
@@ -30,17 +43,31 @@ export default function ServiceEditContainer(props) {
 
     async function onSubmit(data) {
         setError("");
-        const priceHour = await updateService(service.id, data);
-        if (priceHour !== 0) {
-            const result = await updateProdService(service.id, data, priceHour);
-            if (result !== null) {
-                props.history.push("/");
-            } else {
-                setError("Failed to update products_services");
+        const endTime = convertToDate(data.endTime);
+        const priceHour = calculatePriceHour(endTime, data.startTime, data.serviceHour);
+        const docRef = await updateService(service.id, data, endTime, priceHour);
+
+        if (docRef) {
+            const totalService = calculateTotalService(data.travelCost, data.otherCost, priceHour)  
+            const prod = await getProductsByService(service.id);      
+            const totalProduct = calculateTotalProd(prod);
+            const total = calculateTotal(totalService, totalProduct);
+            const docRefProduct = await createProdService(service.id, total, totalService, totalProduct);
+              
+            if(docRefProduct){
+              props.history.push("/"); 
+            }else{
+              setError("Failed to update products from service"); 
             }
         } else {
             setError("Failed to update service");
         }
+    }
+
+    function handleShowProducts() {
+        history.push({
+            pathname: "/product-show",id, status
+        });
     }
 
     if (loading === true) {
@@ -61,6 +88,7 @@ export default function ServiceEditContainer(props) {
             initialValues={updateValues}
             id={id}
             status={status}
+            handleShowProducts={handleShowProducts}
         />
     }
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { useAuth } from "../contexts/AuthContext";
-import { getServicesByUser, createService } from "../contexts/Firestore";
+import { getServicesByUser, createService } from "../api/Firestore";
 
 import Home from "./presentational/Home";
 
@@ -11,19 +11,17 @@ export default function HomeContainer() {
     const columnNames = ["Name", "Status", "Actions"]
     const [error, setError] = useState("")
 
-    const getServices = useCallback(
-        async () => {
-            try {
-                setLoading(true);
-                const tempServices = await getServicesByUser(currentUser.uid)
-                setServices(tempServices);
-            } catch (error) {
-                setError("Error to get services.");
-                console.log(error.message);
-            }
-            setLoading(false);
-        }, [currentUser.uid],
-    )
+    const getServices = useCallback(async () => {
+        try {
+            setLoading(true);
+            const tempServices = await getServicesByUser(currentUser.uid)
+            setServices(tempServices);
+        } catch (error) {
+            setError("Error to get services.");
+            console.log(error.message);
+        }
+        setLoading(false);
+    }, [currentUser.uid])
 
     useEffect(() => {
         getServices();
@@ -31,7 +29,7 @@ export default function HomeContainer() {
 
     async function addService() {
         const docRef = await createService(currentUser.uid);
-        if (docRef !== null) {
+        if (docRef) {
             getServices();
         } else {
             setError("Error to create new service");

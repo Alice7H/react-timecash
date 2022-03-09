@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { useParams } from 'react-router-dom';
-import { getById, updateProducts } from '../../contexts/Firestore';
+import { getById, updateProducts } from '../../api/Firestore';
 import CardLoading from "../presentational/CardLoading";
 import ProductForm from '../presentational/product/ProductForm';
+import { calculateProduct } from "../../utils/calculate";
 
 export default function ProductEditContainer(props) {
     const [product, setProduct] = useState({});
@@ -27,8 +28,9 @@ export default function ProductEditContainer(props) {
     }, [getProduct]);
 
     async function onSubmit(data) {
-        const docRef = await updateProducts(product.id, data);
-        if (docRef !== null) {
+        const total = calculateProduct(data.quantity, data.price);
+        const docRef = await updateProducts(product.id, data, total);
+        if (docRef) {
             props.history.push(`/service-edit/${id}`);
         } else {
             setError('Error to edit product');

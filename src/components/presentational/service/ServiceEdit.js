@@ -1,4 +1,4 @@
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Container, Button, Form, Card } from "react-bootstrap";
 import { Formik } from "formik";
 // import ServiceProdContainer from "../../service/ServiceProdContainer";
@@ -11,22 +11,11 @@ import { validationService } from "../../../validations-schema/validations";
 
 export default function ServiceEdit(props) {
 
-    const { error, initialValues, onSubmit } = props;
+    const { error, initialValues, onSubmit, handleShowProducts } = props;
     const validationSchema = validationService(initialValues.startTime);
-    const history = useHistory();
-
-    function handleShowProducts() {
-        history.push({
-            pathname: "/product-show",
-            id: props.id,
-            status: props.status
-        });
-    }
 
     return (
         <Container>
-            {/* <ServiceProdContainer id={id} status={status} /> */}
-
             <CardBox minHeight="40vh" maxWidth="100%">
                 <Card style={{ marginTop: "20px", marginBottom: "20px" }}>
                     <Card.Body>

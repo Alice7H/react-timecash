@@ -2,6 +2,7 @@ import React from 'react'
 import DatePicker from "react-datepicker";
 import {FormGroup, Form, Col } from "react-bootstrap";
 import { Field } from "formik";
+import { dateTimeBRFormat, timeFormat } from '../../utils/converter';
 import "../../styles/DataPicker.css";
 
 export default function InputDataPicker(props) {
@@ -24,7 +25,7 @@ export default function InputDataPicker(props) {
                             selected={field.value}
                             disabled
                             className="form-control"
-                            dateFormat='dd/MM/yyyy HH:mm:ss'
+                            dateFormat={dateTimeBRFormat}
                             onChange={(val) => setFieldValue( {value}, val)}
                         />
                         :
@@ -36,8 +37,8 @@ export default function InputDataPicker(props) {
                             minDate={form.values.startTime}
                             showTimeSelect
                             popperPlacement='top-end'
-                            timeFormat='HH:mm:ss'
-                            dateFormat='dd/MM/yyyy HH:mm:ss'
+                            timeFormat={timeFormat}
+                            dateFormat={dateTimeBRFormat}
                             onChange={(val)=> {setFieldValue(value, val)}}
                         />
                     );
