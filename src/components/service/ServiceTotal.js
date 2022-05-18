@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { getProductsServices } from '../../api/Firestore';
+import { getProductsServices } from '../../services/Firestore';
 import CardLoading from '../presentational/CardLoading';
 
 export default function ServiceTotal({ id }) {

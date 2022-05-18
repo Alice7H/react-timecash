@@ -14,7 +14,7 @@ import {
     createProdService, 
     getById, 
     getProductsByService 
-} from "../../api/Firestore";
+} from "../../services/Firestore";
 
 export default function ServiceEditContainer(props) {
     const [service, setService] = useState({});

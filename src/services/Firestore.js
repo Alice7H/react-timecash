@@ -1,4 +1,4 @@
-import { db } from '../services/firebase';
+import { db } from './firebase';
 
 export async function getById(table, id) {
     const snapshot = await db.collection(table).doc(id).get();

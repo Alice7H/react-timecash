@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { useAuth } from "../contexts/AuthContext";
-import { getServicesByUser, createService } from "../api/Firestore";
+import { getServicesByUser, createService } from "../services/Firestore";
 
 import Home from "./presentational/Home";
 

@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { getProductsByService } from '../../api/Firestore';
+import { getProductsByService } from '../../services/Firestore';
 import ServiceProd from '../presentational/service/ServiceProd';
 
 export default function ServiceProdContainer({ id, status }) {

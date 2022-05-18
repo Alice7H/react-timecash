@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { createProducts } from "../../api/Firestore";
+import { createProducts } from "../../services/Firestore";
 import { calculateProduct } from "../../utils/calculate";
 import ProductForm from "../presentational/product/ProductForm";
 
