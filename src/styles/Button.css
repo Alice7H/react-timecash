@@ -1,0 +1,39 @@
+
+  .btn-outline-primary {
+    background: var(--mainWhite);
+    border-color:var(--main);
+    color: var(--main);
+    min-height: 52px;
+    min-width: 70px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    text-transform: uppercase;
+  }
+
+  .btn-outline-primary:disabled {
+    border-color:var(--main);
+    color: var(--main);
+  }
+
+  .btn-outline-primary:focus,
+  .btn-outline-primary:hover,
+  .btn-outline-primary:active {
+    border-color: var(--light);
+    color: var(--mainWhite);
+    background: var(--darkPurple);
+  }
+
+  .btn-outline-success {
+    background: var(--mainWhite);
+    min-height: 52px;
+    min-width: 70px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    text-transform: uppercase;
+  }
+
+  .btn-outline-secondary{
+    background: var(--mainWhite);
+    min-height: 52px;
+    min-width: 70px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    text-transform: uppercase;
+  }

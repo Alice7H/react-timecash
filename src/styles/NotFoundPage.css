@@ -1,0 +1,22 @@
+.background {
+    opacity: 0.8;
+}
+
+.background  h1 {
+    color: var(--mainWheat);
+    font-size: 6em;
+}
+
+.background h3{
+    color: var(--mainWheat);
+    font-size: 3em;
+}
+
+.background  h1,  .background  h3 {
+    text-shadow: 3px 3px 2px var(--mainYellow);
+}
+
+#align-button {
+    margin-left: 75%;
+}
+

@@ -1,0 +1,12 @@
+table { 
+  background: var(--lightWhite);
+}
+
+thead {
+  background: var(--lightWhite);
+}
+
+tbody {
+  background: var(--mainWhite);
+  cursor: default;
+}

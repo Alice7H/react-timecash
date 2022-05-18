@@ -1,7 +1,0 @@
-.home-container {
-    /* background-image: linear-gradient(to right bottom, #490085, #56019a, #6202af, #7004c5, #7d06db, #8706e2, #9205ea, #9c04f1, #a402eb, #ab02e5, #b104df, #b609d9); */
-    background: var(--mainWhite);
-    width: 100vw; 
-    height: 64vh;
-    padding-top: 140px;
-}
